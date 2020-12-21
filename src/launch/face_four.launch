@@ -5,16 +5,16 @@
 	<param name="out_image" type="string" value="$(find face_detection)/images/new" />
 
 	<node pkg="face_detection" type="face_detection_node" name="face_left_front" respawn="true">
-		<param name="video" type="string" value="rtsp://admin:rsxx1111@192.168.201.73:554/" />
+		<param name="video" type="string" value="rtsp://admin:rsxx1111@192.168.9.32:554/" />
 		<param name="cam" type="string" value="left_front" />
 	</node>
 
-	<!--
 	<node pkg="face_detection" type="face_detection_node" name="face_right_front" respawn="true">
 		<param name="video" type="string" value="rtsp://admin:rsxx1111@192.168.9.30:554/" />
 		<param name="cam" type="string" value="right_front" />
 	</node>
 
+	<!--
 	<node pkg="face_detection" type="face_detection_node" name="face_right_after" respawn="true">
 		<param name="video" type="string" value="rtsp://admin:rsxx1111@192.168.9.31:554/" />
 		<param name="cam" type="string" value="right_after" />
