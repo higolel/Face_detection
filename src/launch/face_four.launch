@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<launch>
+	<param name="image" type="string" value="$(find face_detection)/images/ivan.jpg" />
+	<param name="model_pb" type="string" value="$(find face_detection)/models/mtcnn_model.pb" />
+	<param name="out_image" type="string" value="$(find face_detection)/images/new" />
+
+	<node pkg="face_detection" type="face_detection_node" name="face_left_front" respawn="true">
+		<param name="video" type="string" value="rtsp://admin:rsxx1111@192.168.201.73:554/" />
+		<param name="cam" type="string" value="left_front" />
+	</node>
+
+	<!--
+	<node pkg="face_detection" type="face_detection_node" name="face_right_front" respawn="true">
+		<param name="video" type="string" value="rtsp://admin:rsxx1111@192.168.9.30:554/" />
+		<param name="cam" type="string" value="right_front" />
+	</node>
+
+	<node pkg="face_detection" type="face_detection_node" name="face_right_after" respawn="true">
+		<param name="video" type="string" value="rtsp://admin:rsxx1111@192.168.9.31:554/" />
+		<param name="cam" type="string" value="right_after" />
+	</node>
+
+	<node pkg="face_detection" type="face_detection_node" name="face_left_after" respawn="true">
+		<param name="video" type="string" value="rtsp://admin:rsxx1111@192.168.9.33:554/" />
+		<param name="cam" type="string" value="left_after" />
+	</node>
+	-->
+	<!--
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find face_detection)/rviz/face_detection.rviz" />
+	-->
+
+</launch>
