@@ -79,6 +79,7 @@ cv::Mat Rect_face_pic(cv::Mat cp_frame, face_box box)
 	int weight = cp_frame.cols, height = cp_frame.rows;
 	int face_weight = int(box.x1 - box.x0), face_height = int(box.y1 - box.y0);
 
+	// 两寸照片 413 * 626
 	int first_point_x0 = std::max(int(box.x0 + (weight / 9) + (face_weight / 2) - 413 / 2), 0);
 	int first_point_y0 = std::max(int(box.y0 + (height / 4) + (face_height / 2) - 626 / 2), 0);
 	int first_point_x1 = std::min(int(box.x1 + (weight / 9) - (face_weight / 2) + 413 / 2), cp_frame.cols);
