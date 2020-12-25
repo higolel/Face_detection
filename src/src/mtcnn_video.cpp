@@ -197,11 +197,15 @@ void Display()
 		for(unsigned int i = 0; i < face_info.size(); i++)
 		{
 			face_box &box = face_info[i];
-			cv::Mat cp_frame = frame;
-			cv::Mat frame_face = Rect_face_pic(cp_frame, box);
-		//	Python_face_attribute();
+			int face_weight = int(box.x1 - box.x0);
+			if(face_weight >= 80)
+			{
+				cv::Mat cp_frame = frame;
+				cv::Mat frame_face = Rect_face_pic(cp_frame, box);
+			//	Python_face_attribute();
 
-			Pub_face_pic_message(cp_frame, frame_face);
+				Pub_face_pic_message(cp_frame, frame_face);
+			}
 
 #if 0
 			// 画人脸框
@@ -215,9 +219,9 @@ void Display()
 #endif
 		}
 
+#if 0
 		cv::rectangle(frame, cv::Point(weight / 9, height / 4), cv::Point(weight / 9 * 8, height / 4 * 3), cv::Scalar(0, 0, 255), 2);
 
-#if 0
 		sensor_msgs::ImagePtr msg = cv_bridge::CvImage(std_msgs::Header(), "bgr8", frame).toImageMsg();
 		pub_image_raw_.publish(msg);
 #endif
