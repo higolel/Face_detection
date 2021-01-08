@@ -144,6 +144,8 @@ void Pub_face_pic_message(cv::Mat cp_frame, cv::Mat frame_face)
 	face_pic_msg.vin = "as00030";
 	face_pic_msg.deviceId = "030人脸";
 	face_pic_msg.pictureType = 1;
+	face_pic_msg.lon = lon_;
+	face_pic_msg.lat = lat_;
 	face_pic_msg.sex = 1;
 	face_pic_msg.age = 25;
 	face_pic_msg.facialExpression = 0;
@@ -402,6 +404,15 @@ void Mtcnn_detect(TF_Session *sess, TF_Graph *graph, cv::Mat& img, std::vector<f
 	}
 }
 
+// --------------------------------------------------------
+/// \概要:	回调函数
+///
+/// \参数:	msg
+// --------------------------------------------------------
+void LocationMsgCallback(const location::location::ConstPtr &msg)
+{
+	lon_ = msg->gps.lon, lat_ = msg->gps.lat;
+}
 
 int main(int argc, char *argv[])
 {
@@ -425,6 +436,7 @@ int main(int argc, char *argv[])
 	pub_image_raw_ = it.advertise("/camera/image_raw_" + cam_, 1);
 #endif
 	pub_face_pic_message_ = nh_.advertise<face_plate_msgs::Face_pic>("/face_pic_msg", 1);
+	sub_gps_ = nh_.subscribe("/location", 10, LocationMsgCallback);
 
 	// 是指使用的显存
 	TF_Graph *graph = TF_NewGraph();
@@ -443,6 +455,8 @@ int main(int argc, char *argv[])
 
 	thread_1.join();
 	thread_2.join();
+
+	ros::spin();
 
 	return 0;
 }

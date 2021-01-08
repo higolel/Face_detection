@@ -9,12 +9,15 @@ std::string video_sub_ = "cam/realmonitor?channel=1&subtype=0";
 
 image_transport::Publisher pub_image_raw_;
 ros::Publisher pub_face_pic_message_;
+ros::Subscriber sub_gps_;
 queue<cv::Mat> que;
+double lon_ = 0.0, lat_ = 0.0;
 
 int Pub_image_raw();
 TF_Session *Load_graph(const char *model_fname, TF_Graph **p_graph);
 int Load_file(const std::string &fname, std::vector<char> &buf);
 void Mtcnn_detect(TF_Session *sess, TF_Graph *graph, cv::Mat& img, std::vector<face_box> &face_list);
+void LocationMsgCallback(const location::location::ConstPtr &msg);
 cv::Mat Image_intercept(cv::Mat frame);
 cv::Mat Rect_face_pic(cv::Mat cp_frame, face_box box);
 void Pub_face_pic_message(cv::Mat cp_frame, cv::Mat frame_face);

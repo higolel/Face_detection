@@ -5,7 +5,7 @@
 	<param name="out_image" type="string" value="$(find face_detection)/images/new" />
 
 	<node pkg="face_detection" type="face_detection_node" name="face_left_front" respawn="true">
-		<param name="video" type="string" value="rtsp://admin:rsxx1111@192.168.201.73:554/" />
+		<param name="video" type="string" value="rtsp://admin:rsxx1111@172.16.3.221:554/" />
 		<param name="cam" type="string" value="left_front" />
 	</node>
 

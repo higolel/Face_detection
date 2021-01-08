@@ -15,6 +15,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <sensor_msgs/image_encodings.h>
 #include <face_plate_msgs/Face_pic.h>
+#include <location/location.h>
 #include <cmath>
 #include <thread>
 #include <queue>
